@@ -1,0 +1,5 @@
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <div class="container-fluid">
+      <h3 class="navbar-brand" [ngClass]="{'online': wsService.socketStatus, 'offline': !wsService.socketStatus}">{{ wsService.socketStatus ? "Server Online" : "Server Offline"}}</h3>
+    </div>
+  </nav>
