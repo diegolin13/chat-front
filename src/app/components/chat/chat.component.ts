@@ -11,12 +11,19 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   texto = '';
   msgSubs : Subscription;
+  messages = [];
+  elemento: HTMLElement;
 
   constructor(private chat: ChatService) {}
   ngOnInit(): void {
+    this.elemento = document.getElementById('chat-mensajes');
     this.msgSubs = this.chat.getMessages().subscribe( msg => {
       console.log('-------------MSG RECIBIDO-------------');
-      console.log(msg);
+      this.messages.push(msg);
+      // aqui se forza al scroll a ir hasta abajo cuando reciba un mensaje
+      setTimeout(() => {
+        this.elemento.scrollTop = this.elemento.scrollHeight;
+      },50);
     });
   }
 

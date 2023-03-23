@@ -1,16 +1,59 @@
 <h1 class="mt-5">Mensajes</h1>
 <hr>
 
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card w-auto" id="chat1" style="border-radius: 15px; max-height: 400px; min-height: 400px;">
+            <div
+                class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+                style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                <i class="bi bi-arrow-left"></i>
+                <p class="mb-0 fw-bold">Live chat</p>
+                <i class="bi bi-x"></i>
+            </div>
+        <div class="card-body" id="chat-mensajes">
+
+            <div *ngFor="let msg of messages">
+                <div class="d-flex flex-row justify-content-start mb-4">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                        alt="avatar 1" style="width: 45px; height: 100%;">
+                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                        <p class="small mb-0">{{msg.body}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ejemplo de mensaje recibido que yo no escribi -->
+
+            <!-- <div class="d-flex flex-row justify-content-end mb-4">
+                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                    <p class="small mb-0">Thank you, I really like your product.</p>
+                </div>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                    alt="avatar 1" style="width: 45px; height: 100%;">
+            </div> -->
+
+
+            <!-- <div class="form-outline">
+                <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+                <label class="form-label" for="textAreaExample">Type your message</label>
+            </div> -->
+
+        </div>
+        </div>
+
+    </div>
+    </div>
+
 <form (ngSubmit)="enviar()">
     <div class="input-group mb-3">
-        <input  type="text" 
-                class="form-control" 
-                placeholder="Mensaje..." 
-                autofocus 
-                autocomplete="off"
-                name="texto"
-                [(ngModel)]="texto"
-                >
+                <input   class="form-control" 
+                            placeholder="Mensaje..."
+                            autofocus
+                            autocomplete="off"
+                            name="texto"
+                            [(ngModel)] ="texto">
         <span class="input-group-text" id="basic-addon1" style="cursor: pointer;" (click)="enviar()">
             <i class="bi bi-send"></i>
         </span>
