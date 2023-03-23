@@ -26,4 +26,14 @@ export class SocketsService {
       this.socketStatus = false;
     });
   }
+
+  emit(evento: string, payload?: any, callback?: Function) {
+
+    console.log('emietiendo evento');
+    this.socket.emit(evento, payload, callback);
+  }
+
+  listen(evento: string) {
+    return this.socket.fromEvent(evento);
+  }
 }

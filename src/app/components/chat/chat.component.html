@@ -1,0 +1,18 @@
+<h1 class="mt-5">Mensajes</h1>
+<hr>
+
+<form (ngSubmit)="enviar()">
+    <div class="input-group mb-3">
+        <input  type="text" 
+                class="form-control" 
+                placeholder="Mensaje..." 
+                autofocus 
+                autocomplete="off"
+                name="texto"
+                [(ngModel)]="texto"
+                >
+        <span class="input-group-text" id="basic-addon1" style="cursor: pointer;" (click)="enviar()">
+            <i class="bi bi-send"></i>
+        </span>
+    </div>
+</form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from './services/chat.service';
 import { SocketsService } from './services/sockets.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { SocketsService } from './services/sockets.service';
 export class AppComponent implements OnInit {
   title = 'chat';
 
-  constructor(public wsService: SocketsService) {}
+  constructor(
+    public wsService: SocketsService,
+    public chatService: ChatService
+  ) {}
   ngOnInit(): void {
-
   }
 }
