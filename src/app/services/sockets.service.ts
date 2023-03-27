@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { environment } from 'src/environments/environment';
+import { Usuario } from '../classes/usuario';
 
 
 
@@ -10,9 +10,11 @@ import { environment } from 'src/environments/environment';
 export class SocketsService {
 
   public socketStatus: boolean = false;
+  public usuario: Usuario;
 
   constructor(private socket: Socket) {
     this.checkStatus();
+    this.cargarStorage();
   }
 
   checkStatus() {
@@ -36,4 +38,33 @@ export class SocketsService {
   listen(evento: string) {
     return this.socket.fromEvent(evento);
   }
+
+  loginWs(nombre: string) {
+    return new Promise ((resolve, reject) => {
+      this.emit('config-usuario', {nombre}, (resp) => {
+        this.usuario = new Usuario(nombre);
+        this.localStorage();
+        resolve(resp);
+      });
+    });
+  }
+
+  localStorage() {
+    window.localStorage.setItem('usuario', JSON.stringify(this.usuario));
+  }
+
+  cargarStorage() {
+    const usuarioLs = window.localStorage.getItem('usuario');
+
+    if(usuarioLs) {
+      this.usuario = JSON.parse(usuarioLs);
+      this.loginWs(this.usuario.name);
+    }
+  }
+
+  getUsuario() {
+    return this.usuario;
+  }
+
+
 }

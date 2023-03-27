@@ -8,9 +8,13 @@
                     <img src="https://m.media-amazon.com/images/I/31VjU29FP+L.png" class="mx-auto img-fluid" alt="Imagen de chat" style="width: 50%;">
                   </div>
                   <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-                  <form>
+                  <form (ngSubmit)="registerName()">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                      <input type="text" 
+                             class="form-control"
+                             id="floatingInput"
+                             name="name"
+                             [(ngModel)] ="name">
                       <label for="floatingInput">Nombre de usuario: </label>
                     </div>
         

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketsService } from 'src/app/services/sockets.service';
 
 @Component({
   selector: 'app-mensajes',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./mensajes.component.css']
 })
 export class MensajesComponent {
+
+  constructor(
+    public wsService: SocketsService
+  ) {}
 
 }
