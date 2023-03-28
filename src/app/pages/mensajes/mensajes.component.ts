@@ -7,6 +7,18 @@ import { SocketsService } from 'src/app/services/sockets.service';
   styleUrls: ['./mensajes.component.css']
 })
 export class MensajesComponent {
+  components = [
+    {
+      id: 1,
+      name: 'En línea',
+      active: true
+    },
+    {
+      id: 2,
+      name: 'Chat',
+      active: false
+    }
+  ]
 
   constructor(
     public wsService: SocketsService
@@ -14,6 +26,12 @@ export class MensajesComponent {
 
   salir() {
     this.wsService.logOut();
+  }
+
+  changeView(idTab: number) {
+    this.components.forEach(element => {
+      element.active = !element.active
+    });
   }
 
 }

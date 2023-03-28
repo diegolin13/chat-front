@@ -2,7 +2,7 @@
 <hr> -->
 
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-8">
 
         <div class="card w-auto" id="chat1" style="border-radius: 15px; min-height: 300px; max-height: 450px;">
             <div
@@ -29,20 +29,40 @@
 
 
         </div>
+
+        <form (ngSubmit)="enviar()">
+            <div class="input-group mt-5">
+                        <input   class="form-control" 
+                                    placeholder="Mensaje..."
+                                    autofocus
+                                    autocomplete="off"
+                                    name="texto"
+                                    [(ngModel)] ="texto">
+                <span class="input-group-text" id="basic-addon1" style="cursor: pointer;" (click)="enviar()">
+                    <i class="bi bi-send"></i>
+                </span>
+            </div>
+        </form>
+
+
     </div>
 
 </div>
 
-<form (ngSubmit)="enviar()">
-    <div class="input-group mb-3 mt-1">
-                <input   class="form-control" 
-                            placeholder="Mensaje..."
-                            autofocus
-                            autocomplete="off"
-                            name="texto"
-                            [(ngModel)] ="texto">
-        <span class="input-group-text" id="basic-addon1" style="cursor: pointer;" (click)="enviar()">
-            <i class="bi bi-send"></i>
-        </span>
+<!-- <div class="row justify-content-center">
+    <div class="col-md-8">
+        <form (ngSubmit)="enviar()">
+            <div class="input-group mb-3 mt-1">
+                        <input   class="form-control" 
+                                    placeholder="Mensaje..."
+                                    autofocus
+                                    autocomplete="off"
+                                    name="texto"
+                                    [(ngModel)] ="texto">
+                <span class="input-group-text" id="basic-addon1" style="cursor: pointer;" (click)="enviar()">
+                    <i class="bi bi-send"></i>
+                </span>
+            </div>
+        </form>
     </div>
-</form>
+</div> -->
