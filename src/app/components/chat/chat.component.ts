@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ChatService } from 'src/app/services/chat.service';
+import { SocketsService } from 'src/app/services/sockets.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,9 +14,15 @@ export class ChatComponent implements OnInit, OnDestroy {
   msgSubs : Subscription;
   messages = [];
   elemento: HTMLElement;
+  userName = '';
 
-  constructor(private chat: ChatService) {}
+  constructor(
+    private chat: ChatService,
+    private wsService: SocketsService
+  ) {}
+
   ngOnInit(): void {
+    this.userName = this.wsService.getUsuario().name;
     this.elemento = document.getElementById('chat-mensajes');
     this.msgSubs = this.chat.getMessages().subscribe( msg => {
       console.log('-------------MSG RECIBIDO-------------');

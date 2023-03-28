@@ -15,37 +15,23 @@
         <div class="card-body" id="chat-mensajes">
 
             <div *ngFor="let msg of messages">
-                <div class="d-flex flex-row justify-content-start mb-4">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                        alt="avatar 1" style="width: 45px; height: 100%;">
-                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                <div class="d-flex flex-row mb-4" [ngClass]="{'justify-content-start': userName === msg.from, 'justify-content-end': userName !== msg.from}">
+                    <img src="https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black-thumbnail.png"
+                        alt="avatar 1" style="width: 45px; height: 100%;" *ngIf="userName === msg.from">
+                    <div class="p-3 ms-3" style="border-radius: 15px;" [ngClass]="{'my-message': userName === msg.from, 'not-my-message': userName !== msg.from, 'border': userName !== msg.from}">
                         <p style="font-size: 12px;">{{msg.from | titlecase}}:</p>
                         <p class="small mb-0">{{msg.body}}</p>
                     </div>
+                    <img src="https://www.rawshorts.com/freeicons/wp-content/uploads/2017/01/red_webpict17_1484337095-1.png"
+                    alt="avatar 1" style="width: 45px; height: 100%; margin-left: 20px;" *ngIf="userName !== msg.from">
                 </div>
             </div>
 
-            <!-- ejemplo de mensaje recibido que yo no escribi -->
-
-            <div class="d-flex flex-row justify-content-end mb-4">
-                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                    <p class="small mb-0">Thank you, I really like your product.</p>
-                </div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                    alt="avatar 1" style="width: 45px; height: 100%;">
-            </div>
-
-
-            <!-- <div class="form-outline">
-                <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
-                <label class="form-label" for="textAreaExample">Type your message</label>
-            </div> -->
 
         </div>
-        </div>
+    </div>
 
-    </div>
-    </div>
+</div>
 
 <form (ngSubmit)="enviar()">
     <div class="input-group mb-3 mt-1">

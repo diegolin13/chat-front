@@ -1,3 +1,11 @@
 #chat-mensajes {
     overflow-y: scroll;
 }
+
+.my-message{
+    background-color: rgba(57, 192, 237,.2);
+}
+
+.not-my-message{
+    background-color: #fbfbfb;
+}
