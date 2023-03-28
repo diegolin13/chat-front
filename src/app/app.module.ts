@@ -11,6 +11,7 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { LoginComponent } from './pages/login/login.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 
@@ -27,7 +28,8 @@ const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
     BrowserModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [SocketsService],
   bootstrap: [AppComponent]

@@ -1,5 +1,12 @@
 <div class="container">
-    <h1 class="mt-5">Bienvenid@, <small>{{wsService.usuario.name | titlecase}}</small></h1>
+    <div class="icono-flex">
+        <i class="bi bi-arrow-left" 
+           data-bs-toggle="tooltip" 
+           data-bs-placement="top"
+           (click)="salir()"
+           title="Cerrar sesión"></i>
+        <h1 class="mt-5">Bienvenid@, <small>{{wsService.usuario.name | titlecase}}</small></h1>
+      </div>
     <hr>
 
     <div class="row">

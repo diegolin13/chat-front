@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { SocketsService } from './sockets.service';
 
 @Injectable({
@@ -7,7 +9,8 @@ import { SocketsService } from './sockets.service';
 export class ChatService {
 
   constructor(
-    public wsService: SocketsService
+    public wsService: SocketsService,
+    private http: HttpClient
   ) { }
 
   sendMessage(mensaje: string) {
@@ -25,5 +28,9 @@ export class ChatService {
 
   getPrivateMessage() {
     return this.wsService.listen('mensaje-privado');
+  }
+
+  getActiveUsers() {
+    return this.wsService.listen('active-users');
   }
 }

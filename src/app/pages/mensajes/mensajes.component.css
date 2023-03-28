@@ -1,0 +1,11 @@
+.icono-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icono-flex i {
+    margin-right: 30px; /* ajusta la cantidad de margen que necesites */
+    margin-top: 40px;
+    cursor: pointer;
+    font-size: 30px;
+  }
