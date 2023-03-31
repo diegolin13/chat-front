@@ -33,4 +33,15 @@ export class ChatService {
   getActiveUsers() {
     return this.wsService.listen('active-users');
   }
+
+  sendPrivateMessage(mensaje: string, destination: string[]){
+    const payload = {
+      from: this.wsService.getUsuario().name,
+      body: mensaje,
+      to: destination
+    }
+
+    this.wsService.emit('private-message', payload);
+
+  }
 }

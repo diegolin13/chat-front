@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChatService } from 'src/app/services/chat.service';
 import { SocketsService } from 'src/app/services/sockets.service';
 
 @Component({
@@ -9,29 +10,35 @@ import { SocketsService } from 'src/app/services/sockets.service';
 export class MensajesComponent {
   components = [
     {
-      id: 1,
       name: 'En línea',
       active: true
     },
     {
-      id: 2,
-      name: 'Chat',
+      name: 'Mensajes',
       active: false
     }
   ]
 
+  destino = {nombre: '', ids: ['']};
+
   constructor(
-    public wsService: SocketsService
+    public wsService: SocketsService,
+    private chatService: ChatService,
   ) {}
 
   salir() {
     this.wsService.logOut();
   }
 
-  changeView(idTab: number) {
+  changeView() {
     this.components.forEach(element => {
       element.active = !element.active
     });
+  }
+
+  iniciarChat(data: {nombre: string, ids: string[]}) {
+    this.destino = data;
+    this.changeView();
   }
 
 }
