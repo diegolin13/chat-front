@@ -15,8 +15,8 @@
                     {{user.id}}
                 </span>
                 <span class="badge rounded-pill bg-danger"
-                      *ngIf="user.notificaciones > 0"
-                      style="margin-left: 20px;">{{user.notificaciones}}</span>
+                    *ngIf="not_aux[user.id]"
+                      style="margin-left: 20px;">{{not_aux[user.id].length}}</span>
             </li>
         </ul>
     </div>

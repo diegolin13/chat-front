@@ -11,6 +11,9 @@ import { SocketsService } from 'src/app/services/sockets.service';
 export class ListaUsuariosComponent implements OnInit, OnDestroy{
   usuariosSubs: Subscription;
   msgSubs: Subscription;
+  mensajes = [];
+  notificaciones = {};
+  not_aux = JSON.parse(localStorage.getItem('notificaciones')) || {};
 
   usuarios = [];
   @Output() idToSend = new EventEmitter<{nombre: string; ids: string[]}>();
@@ -18,7 +21,8 @@ export class ListaUsuariosComponent implements OnInit, OnDestroy{
   constructor(
     private chatService: ChatService,
     private wsService: SocketsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.wsService.emit('get-users', this.wsService.getUsuario().name);
@@ -26,12 +30,22 @@ export class ListaUsuariosComponent implements OnInit, OnDestroy{
       this.usuarios = resp;
     });
     this.msgSubs = this.chatService.getMessages().subscribe((resp: any) => {
-      this.usuarios.forEach((user: any) => {
-        if (user.id === resp.idFrom) {
-          user.notificaciones ++;
-          this.wsService.emit('update-notificaciones', {id: resp.idFrom, notificaciones: user.notificaciones});
-        }
+      this.mensajes.push(resp);
+      this.mensajes.forEach((msg: any) => {
+        this.notificaciones[msg.idFrom] = [];
       });
+      this.mensajes.forEach((msg: any) => {
+        this.notificaciones[msg.idFrom].push(msg);
+      });
+
+      localStorage.setItem('notificaciones', JSON.stringify(this.notificaciones));
+      this.not_aux = JSON.parse(localStorage.getItem('notificaciones'));
+      // this.usuarios.forEach((user: any) => {
+      //   if (user.id === resp.idFrom) {
+      //     user.notificaciones ++;
+      //     this.wsService.emit('update-notificaciones', {id: resp.idFrom, notificaciones: user.notificaciones});
+      //   }
+      // });
     });
   }
 

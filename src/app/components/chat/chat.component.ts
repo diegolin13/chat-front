@@ -33,6 +33,16 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.elemento.scrollTop = this.elemento.scrollHeight;
       },50);
     });
+    const prev_msg = localStorage.getItem('notificaciones');
+    if (prev_msg && prev_msg !== '{}') {
+      const msgs = JSON.parse(prev_msg);
+      // this.messages = msgs[this.destination.ids[0]];
+      msgs[this.destination.ids[0]].forEach((mensaje) => {
+        this.messages.push(mensaje);
+      });
+      delete msgs[this.destination.ids[0]];
+      localStorage.setItem('notificaciones', JSON.stringify(msgs));
+    }
   }
 
   ngOnDestroy(): void {
