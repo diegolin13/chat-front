@@ -1,3 +1,3 @@
 export const environment = {
-    wsUrl: 'http://localhost:8000',
+    wsUrl: 'https://chat-djr.herokuapp.com',
 };
