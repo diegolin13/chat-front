@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { Usuario } from '../classes/usuario';
+import { JsonPipe } from '@angular/common';
 
 
 
@@ -48,6 +49,7 @@ export class SocketsService {
     return new Promise ((resolve, reject) => {
       this.emit('config-usuario', {nombre}, (resp) => {
         this.usuario = new Usuario(nombre);
+        // window.localStorage.setItem('notificaciones', JSON.stringify(resp.notificaciones));
         this.localStorage();
         resolve(resp);
       });
@@ -57,6 +59,7 @@ export class SocketsService {
   logOut() {
     this.usuario = null;
     window.localStorage.removeItem('usuario');
+    window.localStorage.removeItem('notificaciones');
     const payload = {
       nombre: 'sin-nombre'
     }
@@ -68,11 +71,11 @@ export class SocketsService {
 
   localStorage() {
     window.localStorage.setItem('usuario', JSON.stringify(this.usuario));
+
   }
 
   cargarStorage() {
     const usuarioLs = window.localStorage.getItem('usuario');
-
     if(usuarioLs) {
       this.usuario = JSON.parse(usuarioLs);
       this.loginWs(this.usuario.name);
